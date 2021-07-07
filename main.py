@@ -40,7 +40,7 @@ async def check():
             print('check' + element)
             getmine = await tools.getmine(element)
 
-            json = await tools.getonl(element)
+            json = await tools.getonl1(element)
             if getmine == True:
                 if json == False:
                     print(element+',is ofline')
@@ -129,7 +129,7 @@ async def test(ctx):
     db3.set(how,author) #Sets Value
 @client.command()
 async def test1(ctx):
-    getmine = await tools.getmine("0xa15de4839ed11ac66a6ff0a4e58fe90d99e67b3d")
+    getmine = await tools.getonl1("0xa15de4839ed11ac66a6ff0a4e58fe90d99e67b3d")
     print(getmine)   
 
 @client.command()
@@ -144,4 +144,4 @@ async def cmds(ctx):
  
 
 
-client.run('ODYxOTAyMDA3NjM0NDkzNDUw.YOQiyw.p-9j0DakP5FibsTOdKS_DbL75U8')
+client.run('no')

@@ -1,6 +1,8 @@
 import requests
+from datetime import datetime
 
-
+def to_integer(dt_time):
+    return 10000*dt_time.year + 100*dt_time.month + dt_time.day
 async def getonl(addr):
         try:
             link = 'http://api.idena.io/api/onlineidentity/' + str(addr)
@@ -20,15 +22,42 @@ async def getmine(addr):
             eph = r1.json()['result']['epoch']
             link = 'http://api.idena.io/api/Epoch/' + str(eph) +'/Identity/' + str(addr)
             r = requests.get(link)
-
-
             results = r.json()['result']['state']
             if results in canmine:
                 return True
-
-           
-            
         except KeyError:
             print("Address not found")
             return KeyError
 
+async def getonl1(addr):
+        date_format = "%Y-%m-%dT%H:%M:%S."
+        
+        now = datetime.now()
+        current_time = now.strftime(date_format)
+
+        try:
+            link = 'http://api.idena.io/api/onlineidentity/' + str(addr)
+            r = requests.get(link)
+            results = r.json()['result']['lastActivity']
+            sub_str = "."
+  
+# slicing off after length computation
+            res = results[:results.index(sub_str) + len(sub_str)]
+            now  = datetime.strptime(current_time, date_format)
+            lastseen  = datetime.strptime(res, date_format)
+            now1 = int(now.strftime('%H%M'))
+            lastseen1 = int(lastseen.strftime('%H%M'))
+
+            diff = now1 - lastseen1
+            print(now1)
+            print(lastseen1)
+            print(diff)
+            if diff > int('40'):
+               return True
+            else: 
+                return False
+
+
+        except KeyError:
+            print("Address not found")
+            return KeyError
