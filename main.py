@@ -139,4 +139,4 @@ async def cmds(ctx):
  
 
 
-client.run('ODYxOTAyMDA3NjM0NDkzNDUw.YOQiyw.ZY2-lCUQ6g4F8xj4vj0gRtUWgiA')
+client.run('your bot token')
