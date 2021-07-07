@@ -1,4 +1,5 @@
 from json import dump
+from os import truncate
 from typing import ChainMap
 from discord.ext.commands.core import check
 import tools
@@ -37,16 +38,19 @@ async def check():
 
         for element in checkaddr1:
             print('check' + element)
-            json = await tools.getonl(element)
-            if json == False:
-                print(element+',is ofline')
+            getmine = await tools.getmine(element)
 
-                author = int(db.get(element))
-                owner = await client.fetch_user(author)  # your user ID
-                if author not in checkuserr1:
-                    await owner.send("YOUR NODE IS NOT ONLINE!,"+element)
-                    db3.set(how,author) #Sets Value
-   
+            json = await tools.getonl(element)
+            if getmine == True:
+                if json == False:
+                    print(element+',is ofline')
+
+                    author = int(db.get(element))
+                    owner = await client.fetch_user(author)  # your user ID
+                    if author not in checkuserr1:
+                        await owner.send("YOUR NODE IS NOT ONLINE!,"+element)
+                        db3.set(how,author) #Sets Value
+    
 
         await asyncio.sleep(900)
 
@@ -125,8 +129,9 @@ async def test(ctx):
     db3.set(how,author) #Sets Value
 @client.command()
 async def test1(ctx):
-    await check1()
-     
+    getmine = await tools.getmine("0xa15de4839ed11ac66a6ff0a4e58fe90d99e67b3d")
+    print(getmine)   
+
 @client.command()
 async def cmds(ctx):
     await ctx.send('---Help--')
@@ -139,4 +144,4 @@ async def cmds(ctx):
  
 
 
-client.run('your bot token')
+client.run('ODYxOTAyMDA3NjM0NDkzNDUw.YOQiyw.p-9j0DakP5FibsTOdKS_DbL75U8')
