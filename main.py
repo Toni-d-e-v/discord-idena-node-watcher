@@ -48,7 +48,7 @@ async def check():
                     author = int(db.get(element))
                     owner = await client.fetch_user(author)  # your user ID
                     if author not in checkuserr1:
-                        await owner.send("YOUR NODE IS NOT ONLINE!,"+element)
+                        await owner.send("YOUR NODE IS OFFLINE! NODE:"+element)
                         db3.set(how,author) #Sets Value
     
 
@@ -144,4 +144,4 @@ async def cmds(ctx):
  
 
 
-client.run('no')
+client.run('ODYxOTAyMDA3NjM0NDkzNDUw.YOQiyw.uKHHSYSDuYKWbdeoHD9ljlq2aUA')

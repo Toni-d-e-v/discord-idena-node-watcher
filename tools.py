@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime
+import pytz
 
 def to_integer(dt_time):
     return 10000*dt_time.year + 100*dt_time.month + dt_time.day
@@ -31,8 +32,9 @@ async def getmine(addr):
 
 async def getonl1(addr):
         date_format = "%Y-%m-%dT%H:%M:%S."
-        
-        now = datetime.now()
+        UTC = pytz.utc
+
+        now = datetime.now(UTC)
         current_time = now.strftime(date_format)
 
         try:
@@ -52,7 +54,7 @@ async def getonl1(addr):
             print(now1)
             print(lastseen1)
             print(diff)
-            if diff > int('40'):
+            if int(diff) < 40:
                return True
             else: 
                 return False
