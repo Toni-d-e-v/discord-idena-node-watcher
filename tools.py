@@ -33,15 +33,17 @@ async def getonl1(addr):
             res = results[:results.index(sub_str) + len(sub_str)]
             now  = datetime.strptime(current_time, date_format)
             lastseen  = datetime.strptime(res, date_format)
-            now1 = int(now.strftime('%H%M'))
-            lastseen1 = int(lastseen.strftime('%H%M'))
-            diff = now1 - lastseen1
-            print(now)
+            diff = now - lastseen
             print(lastseen)
-            print(now1)
-            print(lastseen1)
+            print(now)
+
             print(diff)
-            if int(diff) < 30:
+            diff1 = datetime.strptime(str(diff), "%H:%M:%S")
+            print(diff1)
+            print("Time diff:",now - lastseen)
+            print("Time diff in new format:",diff1)
+
+            if diff1 < datetime.strptime("0:30:0", "%H:%M:%S"):
                return False
             else:
                return True

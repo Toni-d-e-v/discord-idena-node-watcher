@@ -51,7 +51,7 @@ async def check():
                         db3.set(how,author) #Sets Value
     
 
-        await asyncio.sleep(15)
+        await asyncio.sleep(600)
 
 async def check1(): 
     while True:
@@ -158,4 +158,4 @@ async def cmds(ctx):
  
 
 
-client.run('ODYxOTAyMDA3NjM0NDkzNDUw.YOQiyw.G9WrtvtUw_TjeP5Agy5ANmTbuUw')
+client.run('ODYxOTAyMDA3NjM0NDkzNDUw.YOQiyw.qCAvAPzldSunsROoXSfg4YbZlP8')
