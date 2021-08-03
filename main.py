@@ -23,7 +23,6 @@ db3 = DB("db/calluser.db")
 client = commands.Bot(command_prefix = "!")
 
 async def check(): 
-
     while True:
         checkaddr = db1.geta()#  second addreses
         print(db1.geta())
@@ -33,16 +32,16 @@ async def check():
         print(db3.geta())
         checkuserr1 = list(checkuser.values())
         print('All called users:',checkuserr1)
-
         how = db2.get("how")
-
         for element in checkaddr1:
             print('check' + element)
             getmine = await tools.getmine(element)
-
+            print("User mine status:",getmine)
             json = await tools.getonl1(element)
+            print("Is user off:",json)
+
             if getmine == True:
-                if json == False:
+                if json == True:
                     print(element+',is ofline')
 
                     author = int(db.get(element))
@@ -52,7 +51,7 @@ async def check():
                         db3.set(how,author) #Sets Value
     
 
-        await asyncio.sleep(900)
+        await asyncio.sleep(15)
 
 async def check1(): 
     while True:
@@ -111,6 +110,20 @@ async def delite(ctx, arg, arg1):
     else:
         await ctx.send('INVALID ADDRESS:'+ arg)
 @client.command()
+async def mynodes(ctx):
+    message = str(ctx.message.content)
+    author = str(ctx.message.author.id)
+ 
+    checkaddr = db1.geta()#  second addreses
+    print(db1.geta())
+    checkaddr1 = list(checkaddr.values())
+    print('All addresses users:',checkaddr1)
+    checkuser = db.geta()#  second addreses
+    print(db.geta())
+    checkuser1 = list(checkuser)
+    print('All users:',checkuser1)
+
+@client.command()
 async def reset(ctx):
     author = str(ctx.message.author)
     if author == 'Toni.Dev#6969':
@@ -137,6 +150,7 @@ async def cmds(ctx):
     await ctx.send('---Help--')
     await ctx.send('1. !watch <address> # Add address to watch')
     await ctx.send('2. !delite <address> <number> # You will get number when you add watch address')
+    #await ctx.send('3. !mynodes # Get you all addreses you watch')
 
 
 
@@ -144,4 +158,4 @@ async def cmds(ctx):
  
 
 
-client.run('ODYxOTAyMDA3NjM0NDkzNDUw.YOQiyw.uKHHSYSDuYKWbdeoHD9ljlq2aUA')
+client.run('ODYxOTAyMDA3NjM0NDkzNDUw.YOQiyw.G9WrtvtUw_TjeP5Agy5ANmTbuUw')
